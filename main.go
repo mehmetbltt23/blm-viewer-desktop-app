@@ -1,25 +1,57 @@
 package main
 
 import (
-	"fyne.io/fyne/v2"
-	"fyne.io/fyne/v2/app"
-	"fyne.io/fyne/v2/container"
-	"fyne.io/fyne/v2/widget"
+	"fmt"
+	"github.com/mehmetbltt23/blm-viewer-desktop-app/blm"
 )
 
-func main() {
-	a := app.New()
-	w := a.NewWindow("Hello")
-	w.Resize(fyne.Size{500, 500})
-	w.CenterOnScreen()
-	w.Hide()
-	hello := widget.NewLabel("Hello Fyne!")
-	w.SetContent(container.NewVBox(
-		hello,
-		widget.NewButton("Hi!", func() {
-			hello.SetText("Welcome :)")
-		}),
-	))
+var data = [][]string{
+	[]string{
+		"Address1", "Address2", "Address3", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4",
+	},
+	[]string{
+		"Address1", "Address2", "Address3", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4",
+	},
+	[]string{
+		"Address1", "Address2", "Address3", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4",
+	},
+	[]string{
+		"Address1", "Address2", "Address3", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4",
+	},
+	[]string{
+		"Address1", "Address2", "Address3", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4",
+	},
+	[]string{
+		"Address1", "Address2", "Address3", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4",
+	},
+	[]string{
+		"Address1", "Address2", "Address3", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4", "Address4",
+	},
+}
 
-	w.ShowAndRun()
+func main() {
+	reader, err := blm.NewReader("test_data/test.BLM")
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(reader.GetHeaders())
+	/*myApp := app.New()
+	myWindow := myApp.NewWindow("Table Widget")
+	myWindow.Resize(fyne.Size{1000, 1000})
+	myWindow.FixedSize()
+	list := widget.NewTable(
+		func() (int, int) {
+			return len(data), len(data[0])
+		},
+		func() fyne.CanvasObject {
+			return widget.NewLabel("wide content")
+		},
+		func(i widget.TableCellID, o fyne.CanvasObject) {
+			fmt.Println(i.Col, i.Row)
+			o.(*widget.Label).SetText(data[i.Row][i.Col])
+		})
+
+	myWindow.SetContent(list)
+	myWindow.ShowAndRun()*/
 }
